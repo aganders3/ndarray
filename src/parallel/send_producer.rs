@@ -1,4 +1,3 @@
-
 use crate::imp_prelude::*;
 use crate::{Layout, NdProducer};
 use std::ops::{Deref, DerefMut};
@@ -32,8 +31,6 @@ impl<P: NdProducer> NdProducer for SendProducer<P>
     type Dim = P::Dim;
     type Ptr = P::Ptr;
     type Stride = P::Stride;
-
-    private_impl! {}
 
     #[inline(always)]
     fn raw_dim(&self) -> Self::Dim {

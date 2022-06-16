@@ -323,8 +323,6 @@ where
     fn out_ndim(&self) -> usize {
         T::out_ndim(self)
     }
-
-    private_impl! {}
 }
 
 macro_rules! impl_slicearg_samedim {
@@ -343,8 +341,6 @@ macro_rules! impl_slicearg_samedim {
             fn out_ndim(&self) -> usize {
                 self.out_ndim()
             }
-
-            private_impl! {}
         }
     };
 }
@@ -371,8 +367,6 @@ where
     fn out_ndim(&self) -> usize {
         self.out_ndim()
     }
-
-    private_impl! {}
 }
 
 unsafe impl SliceArg<IxDyn> for [SliceInfoElem] {
@@ -385,8 +379,6 @@ unsafe impl SliceArg<IxDyn> for [SliceInfoElem] {
     fn out_ndim(&self) -> usize {
         self.iter().filter(|s| !s.is_index()).count()
     }
-
-    private_impl! {}
 }
 
 /// Represents all of the necessary information to perform a slice.
@@ -905,8 +897,6 @@ where
     type Output = ();
 
     fn multi_slice_move(&self, _view: ArrayViewMut<'a, A, D>) -> Self::Output {}
-
-    private_impl! {}
 }
 
 impl<'a, A, D, I0> MultiSliceArg<'a, A, D> for (I0,)
@@ -920,8 +910,6 @@ where
     fn multi_slice_move(&self, view: ArrayViewMut<'a, A, D>) -> Self::Output {
         (view.slice_move(&self.0),)
     }
-
-    private_impl! {}
 }
 
 macro_rules! impl_multislice_tuple {
@@ -952,8 +940,6 @@ macro_rules! impl_multislice_tuple {
                     )
                 }
             }
-
-            private_impl! {}
         }
     };
     (@intersects_self $shape:expr, ($head:expr,)) => {
@@ -982,6 +968,4 @@ where
     fn multi_slice_move(&self, view: ArrayViewMut<'a, A, D>) -> Self::Output {
         T::multi_slice_move(self, view)
     }
-
-    private_impl! {}
 }

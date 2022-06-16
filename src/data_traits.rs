@@ -178,8 +178,6 @@ unsafe impl<A> RawData for RawViewRepr<*const A> {
 
     #[inline(always)]
     fn _is_pointer_inbounds(&self, _ptr: *const Self::Elem) -> bool { true }
-
-    private_impl! {}
 }
 
 unsafe impl<A> RawDataClone for RawViewRepr<*const A> {
@@ -198,8 +196,6 @@ unsafe impl<A> RawData for RawViewRepr<*mut A> {
 
     #[inline(always)]
     fn _is_pointer_inbounds(&self, _ptr: *const Self::Elem) -> bool { true }
-
-    private_impl! {}
 }
 
 unsafe impl<A> RawDataMut for RawViewRepr<*mut A> {
@@ -232,8 +228,6 @@ unsafe impl<A> RawData for OwnedArcRepr<A> {
     fn _is_pointer_inbounds(&self, self_ptr: *const Self::Elem) -> bool {
         self.0._is_pointer_inbounds(self_ptr)
     }
-
-    private_impl! {}
 }
 
 // NOTE: Copy on write
@@ -342,8 +336,6 @@ unsafe impl<A> RawData for OwnedRepr<A> {
         let end = unsafe { ptr.add(slc.len()) };
         self_ptr >= ptr && self_ptr <= end
     }
-
-    private_impl! {}
 }
 
 unsafe impl<A> RawDataMut for OwnedRepr<A> {
@@ -424,8 +416,6 @@ unsafe impl<'a, A> RawData for ViewRepr<&'a A> {
 
     #[inline(always)]
     fn _is_pointer_inbounds(&self, _ptr: *const Self::Elem) -> bool { true }
-
-    private_impl! {}
 }
 
 unsafe impl<'a, A> Data for ViewRepr<&'a A> {
@@ -463,8 +453,6 @@ unsafe impl<'a, A> RawData for ViewRepr<&'a mut A> {
 
     #[inline(always)]
     fn _is_pointer_inbounds(&self, _ptr: *const Self::Elem) -> bool { true }
-
-    private_impl! {}
 }
 
 unsafe impl<'a, A> RawDataMut for ViewRepr<&'a mut A> {
@@ -582,8 +570,6 @@ unsafe impl<'a, A> RawData for CowRepr<'a, A> {
             CowRepr::Owned(data) => data._is_pointer_inbounds(ptr),
         }
     }
-
-    private_impl! {}
 }
 
 unsafe impl<'a, A> RawDataMut for CowRepr<'a, A>
@@ -631,7 +617,6 @@ where
         }
     }
 
-    #[doc(hidden)]
     unsafe fn clone_from_with_ptr(
         &mut self,
         other: &Self,

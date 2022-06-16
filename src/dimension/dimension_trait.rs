@@ -428,8 +428,6 @@ impl Dimension for Dim<[Ix; 0]> {
     fn try_remove_axis(&self, _ignore: Axis) -> Self::Smaller {
         *self
     }
-
-    private_impl! {}
 }
 
 impl Dimension for Dim<[Ix; 1]> {
@@ -543,7 +541,6 @@ impl Dimension for Dim<[Ix; 1]> {
             None
         }
     }
-    private_impl! {}
 }
 
 impl Dimension for Dim<[Ix; 2]> {
@@ -698,7 +695,6 @@ impl Dimension for Dim<[Ix; 2]> {
     fn try_remove_axis(&self, axis: Axis) -> Self::Smaller {
         self.remove_axis(axis)
     }
-    private_impl! {}
 }
 
 impl Dimension for Dim<[Ix; 3]> {
@@ -817,7 +813,6 @@ impl Dimension for Dim<[Ix; 3]> {
     fn try_remove_axis(&self, axis: Axis) -> Self::Smaller {
         self.remove_axis(axis)
     }
-    private_impl! {}
 }
 
 macro_rules! large_dim {
@@ -847,7 +842,6 @@ macro_rules! large_dim {
             fn try_remove_axis(&self, axis: Axis) -> Self::Smaller {
                 self.remove_axis(axis)
             }
-            private_impl!{}
         }
     )
 }
@@ -920,8 +914,6 @@ impl Dimension for IxDyn {
     fn into_dyn(self) -> IxDyn {
         self
     }
-
-    private_impl! {}
 }
 
 impl Index<usize> for Dim<IxDynImpl> {

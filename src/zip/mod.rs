@@ -95,7 +95,6 @@ where
         let res: ArrayView<'_, A, E::Dim> = (&self).broadcast_unwrap(shape.into_dimension());
         unsafe { ArrayView::new(res.ptr, res.dim, res.strides) }
     }
-    private_impl! {}
 }
 
 trait ZippableTuple: Sized {
